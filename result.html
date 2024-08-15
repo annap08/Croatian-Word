@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="croatian-flag.svg" alt="Croatian Flag" class="flag">
+            <h1 id="result-header"></h1>
+        </header>
+        <div id="result-message" class="result-content"></div>
+        <a href="index.html" class="btn">Go Back to Start</a>
+    </div>
+    <script>
+        // Retrieve score and total questions from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const score = parseInt(urlParams.get('score'));
+        const total = parseInt(urlParams.get('total'));
+        const resultHeader = document.getElementById('result-header');
+        const resultMessage = document.getElementById('result-message');
+
+        // Determine if the user passed or failed
+        if (score / total >= 0.7) {
+            resultHeader.textContent = 'Čestitam!';
+            resultMessage.innerHTML = `<p>You scored ${score} out of ${total}!</p> <p>Great job! 🎉</p>`;
+        } else {
+            resultHeader.textContent = 'Probaj ponovo';
+            resultMessage.innerHTML = `<p>You scored ${score} out of ${total}.</p> <p>Better luck next time! 😢</p>`;
+        }
+    </script>
+</body>
+</html>
